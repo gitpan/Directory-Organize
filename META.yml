@@ -1,0 +1,19 @@
+---
+name: Directory-Organize
+version: v0.8
+author: []
+abstract: Create and Organize Directories
+license: perl
+resources:
+  license: http://dev.perl.org/licenses/
+requires:
+  Term::ReadKey: 0
+  version: 0
+provides:
+  Directory::Organize:
+    file: lib/Directory/Organize.pm
+    version: v0.8
+generated_by: Module::Build version 0.2808
+meta-spec:
+  url: http://module-build.sourceforge.net/META-spec-v1.2.html
+  version: 1.2
