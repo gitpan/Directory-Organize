@@ -4,7 +4,7 @@ package Directory::Organize;
 
 use strict;
 use warnings;
-use version; our $VERSION = qv('0.8');
+use version; our $VERSION = qv('0.9');
 
 sub new {
     my $self = shift;
@@ -287,7 +287,10 @@ This documentation refers to Directory::Organize version 0.8.
 
 This functions returns an array of arrays of the form
 
-  [ I<path>, I<description> ].
+  ([ path1, description1 ],
+   ...
+   [ pathn, descriptionn ],
+  )
 
 It searches all subdirectories three levels below C<$basedir> for a file
 named I<.project>. The returned array contains the relative path from the

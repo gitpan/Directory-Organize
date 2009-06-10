@@ -1,0 +1,3 @@
+2009-06-10 11:34 CEST (mathias) Version 0.9
+	- added command line arguments --basedir and --listlines
+	- small fixes in POD

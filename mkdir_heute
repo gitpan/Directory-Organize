@@ -19,8 +19,9 @@
 use strict;
 use warnings;
 
-use Term::ReadKey;
 use Directory::Organize;
+use Getopt::Long;
+use Term::ReadKey;
 
 $|++;
 
@@ -35,10 +36,24 @@ print choosedir(\%params);
 sub init_params {
     my ($params) = @_;
 
-    my ($wchar, $hchar, $wpixels, $hpixels) = GetTerminalSize("STDOUT");
+    my $clo = {};
 
-    $params->{basedir} = "$ENV{HOME}/A";
-    $params->{listlines} = defined $hchar ? $hchar - 4 : 21;
+    GetOptions($clo, 'basedir=s', 'listlines=i');
+
+    if ($clo->{basedir}) {
+        $params->{basedir} = $clo->{basedir};
+    }
+    else {
+        $params->{basedir} = "$ENV{HOME}/A";
+    }
+
+    if ($clo->{listlines}) {
+        $params->{listlines} = $clo->{listlines};
+    }
+    else {
+        my ($wchar, $hchar, $wpixels, $hpixels) = GetTerminalSize("STDOUT");
+        $params->{listlines} = defined $hchar ? $hchar - 4 : 21;
+    }
 
     return $params;
 } # init_params()
@@ -163,9 +178,17 @@ __END__
 
 mkdir_heute - create and find directories interactive
 
+=head SYNOPSIS
+
+  mkdir_heute
+
+  mkdir_heute --basedir=~/archive
+
+  mkdir_heute --listlines=15
+
 =head1 VERSION
 
-This documentation refers to Directory::Organize version 0.8
+This documentation refers to version 0.9.
 
 =head1 USAGE
 
@@ -173,7 +196,15 @@ This script scans a basedir (~/A) for directories named YYYY/MM/DD
 where YYYY, MM and DD are numbers corresponding to a year, month, day of
 month and prints them on STDERR.
 
-You may
+The script returns the choosen directory on STDOUT and may be used in a
+shell alias like this:
+
+  alias cdheute='cd `mkdir_heute`'
+
+so that you may say 'cdheute' on the command line and your working directory
+will be changed to the choosen directory.
+
+When invoked you may
 
 =over 4
 
@@ -204,17 +235,38 @@ or '>' and a date (eg. 2009, 2009-04 or 2009-04-24)
 
 =item *
 
-create a new directory with '+' and a description for it
+create a new directory with '+' followed by a description for it
 
 =back
 
-The script returns the choosen directory on STDOUT and may be used in a
-shell alias like this:
+=head1 DESCRIPTION
 
-  alias cdheute='cd `mkdir_heute`'
+=head2 Command Line Arguments
 
-so that you may say 'cdheute' on the command line and your working directory
-will be changed to the choosen directory.
+=over 4
+
+=item --basedir
+
+With this argument it is possible to redirect the script to another base
+directory under which it scans for project descriptions to display. A new
+directory would be created below this directory.
+
+  mkdir_heute --basedir=~/archive
+
+  mkdir_heute -b ~/archive
+
+=item --listlines
+
+Since it is possible that on some systems Term::ReadKey::GetTerminalSize()
+does not deliver a meaningful value, you may skip the invocation of that
+function by providing the nummer of lines for the listing of descriptions on
+the command line.
+
+  mkdir_heute --listlines=15
+
+  mkdir_heute -l 15
+
+=back
 
 =head1 AUTHOR
 
