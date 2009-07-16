@@ -1,3 +1,6 @@
+2009-07-16 19:18 CEST (mathias) Version 0.9.1
+	- added DIAGNOSTIC to POD for mkdir_heute
+
 2009-06-10 11:34 CEST (mathias) Version 0.9
 	- added command line arguments --basedir and --listlines
 	- small fixes in POD

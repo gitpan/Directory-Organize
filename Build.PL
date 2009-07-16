@@ -4,7 +4,6 @@ my $build = new Module::Build(
     create_makefile_pl => 'traditional',
     dist_abstract      => 'Create and Organize Directories',
     dist_author        => 'Mathias Weidner <mathias@weidner.in-bad-schmiedeberg.de>',
-    dist_version       => '0.9',
     license => 'perl',
     module_name => 'Directory::Organize',
     requires => {

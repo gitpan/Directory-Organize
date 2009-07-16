@@ -268,6 +268,27 @@ the command line.
 
 =back
 
+=head1 DIAGNOSTICS
+
+=head2 Unable to get Terminal Size. The TIOCGWINSZ ioctl didn't work. The
+ COLUMNS and LINES environment variables didn't work. The resize program
+ didn't work. at /usr/lib/perl5/Term/ReadKey.pm line 343.
+
+This happened to me especially on elder systems when invoked via backtics
+such as
+
+  cd `mkdir_heute`
+
+although the program works fine when invoked directly.
+
+One workaround is to install the program I<resize> which comes on
+Debian GNU Linux within the package I<xutils>.
+
+If you can't install the program I<resize>, you could start I<mkdir_heute>
+with a fixed number of list lines like this
+
+  cd `mkdir_heute -l 25`
+
 =head1 AUTHOR
 
 Mathias Weidner
