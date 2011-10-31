@@ -96,12 +96,15 @@ sub choosedir {
         # let the user choose a directory
             my $input = '';
             while (1) {
+                return '.' if eof(STDIN);
                 my $project_text = '';
                 $input = <STDIN>;
                 chomp $input;
                 if ($input =~ /^\d+$/) {
-                    return $basedir . '/' . $directories[$input]->[0]
-                        if ($input < scalar @directories);
+                    if ($input < scalar @directories) {
+                        printf STDERR "=== %s ===\n", $directories[$input]->[1];
+                        return $basedir . '/' . $directories[$input]->[0];
+                    }
                 }
                 elsif ($input =~ /^f(irst)?$/i) {
                     $firstline = 0;

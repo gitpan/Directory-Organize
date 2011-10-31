@@ -8,3 +8,4 @@ META.yml
 mkdir_heute
 README
 t/Organize.t
+t/script-mkdir_heute.t
