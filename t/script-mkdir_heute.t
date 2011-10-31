@@ -18,17 +18,17 @@ eval {
 	local $SIG{ALRM} = sub { die "not completed\n" };
 	alarm(30);   
 
-	my $pid = open3($in, $out, $err, $script);
+	my $pid = open3($in, $out, $err, $perl, '-Ilib', $script);
 	print $in "q\n";
 	is(<$out>,'.',"end with (q)uit");
 	waitpid($pid, 0);
 
-	$pid = open3($in, $out, $err, $script);
+	$pid = open3($in, $out, $err, $perl, '-Ilib', $script);
 	close $in;
 	is(<$out>,'.',"EOF in Input");
 	waitpid($pid, 0);
 
-	$pid = open3($in, $out, $err, $script, '-b', 't/base');
+	$pid = open3($in, $out, $err, $perl, '-Ilib', $script, '-b', 't/base');
 	print $in "+ something\n";
 	my $dir = <$out>;
 	waitpid($pid, 0);

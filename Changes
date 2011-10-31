@@ -1,3 +1,7 @@
+2011-10-31 18:22 CET (mathias) Version 0.9.3
+	- added 'perl' and '-Ilib' to invocation of script in
+	  t/script-mkdir_heute
+
 2011-10-31 11:47 CET (mathias) Version 0.9.2
 	- tests for script mkdir_heute
 
