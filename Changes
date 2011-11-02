@@ -1,3 +1,6 @@
+2011-11-02 10:01 CET (mathias) Version 0.9.4
+	- t/script-mkdir_heute: additional diagnostics
+
 2011-10-31 18:22 CET (mathias) Version 0.9.3
 	- added 'perl' and '-Ilib' to invocation of script in
 	  t/script-mkdir_heute
