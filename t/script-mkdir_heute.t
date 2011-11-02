@@ -16,6 +16,7 @@ else {
 my $perl = Probe::Perl->find_perl_interpreter;
 my $script = File::Spec->catfile(qw/. mkdir_heute/); 
 my $basedir = 't/base';
+my @scriptopts = ( '-b', $basedir, '-l', '5');
 
 my $in  = gensym;
 my $out = gensym;
@@ -28,19 +29,19 @@ eval {
 	local $SIG{ALRM} = sub { die "not completed\n" };
 	alarm(30);   
 
-	$pid = open3($in, $out, $err, $perl, '-Ilib', $script, '-b', $basedir);
+	$pid = open3($in, $out, $err, $perl, '-Ilib', $script, @scriptopts);
 	print $in "q\n";
 	is(<$out>,'.',"end with (q)uit");
 	like(<$err>,qr/^\+\(plus\): new directory /,"what's on stderr");
 	waitpid($pid, 0);
 
-	$pid = open3($in, $out, $err, $perl, '-Ilib', $script, '-b', $basedir);
+	$pid = open3($in, $out, $err, $perl, '-Ilib', $script, @scriptopts);
 	close $in;
 	is(<$out>,'.',"EOF in Input");
 	like(<$err>,qr/^\+\(plus\): new directory /,"what's on stderr");
 	waitpid($pid, 0);
 
-	$pid = open3($in, $out, $err, $perl, '-Ilib', $script, '-b', $basedir);
+	$pid = open3($in, $out, $err, $perl, '-Ilib', $script, @scriptopts);
 	print $in "+ something\n";
 	my $dir = <$out>;
 	waitpid($pid, 0);

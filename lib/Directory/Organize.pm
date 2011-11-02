@@ -4,7 +4,7 @@ package Directory::Organize;
 
 use strict;
 use warnings;
-use version; our $VERSION = qv('0.9.4');
+use version; our $VERSION = qv('0.9.5');
 
 sub new {
     my $self = shift;

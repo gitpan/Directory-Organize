@@ -15,11 +15,11 @@ name: Directory-Organize
 provides:
   Directory::Organize:
     file: lib/Directory/Organize.pm
-    version: v0.9.4
+    version: v0.9.5
 requires:
   Getopt::Long: 0
   Term::ReadKey: 0
   version: 0
 resources:
   license: http://dev.perl.org/licenses/
-version: v0.9.4
+version: v0.9.5

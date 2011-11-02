@@ -1,3 +1,6 @@
+2011-11-02 21:28 CET (mathias) Version 0.9.5
+	- t/script-mkdir_heute: add -l option to script invocation
+
 2011-11-02 10:01 CET (mathias) Version 0.9.4
 	- t/script-mkdir_heute: additional diagnostics
 
