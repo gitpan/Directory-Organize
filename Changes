@@ -1,3 +1,6 @@
+2012-07-20 18:45 CEST (mathias) Version 0.9.6
+	- t/script-mkdir_heute: skip test on MSWin32
+
 2011-11-02 21:28 CET (mathias) Version 0.9.5
 	- t/script-mkdir_heute: add -l option to script invocation
 

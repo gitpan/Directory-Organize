@@ -9,6 +9,9 @@ eval "use Probe::Perl";
 if ($@) {
 	plan skip_all => 'Probe::Perl required for testing the script';
 }
+elsif ('MSWin32' eq $^O) { # man perlport
+	plan skip_all => qq(Script is not usable on $^O);
+}
 else {
 	plan tests => 8;
 }
